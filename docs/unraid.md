@@ -45,8 +45,10 @@ replaces its commands in the specified server; use a dedicated application.
 1. Review and push the application, `ca_profile.xml`, `templates/discord-music-bot.xml`,
    `icon.svg`, `icon.png`, and this documentation to `main` in
    `antoblu99/Discord-Music-Bot`. Keep one XML per Docker application.
-2. Run the **Publish container image** GitHub Actions workflow on `main`. It runs
-   tests and publishes `latest` and a commit-specific tag to GHCR. The workflow
+2. Push a reviewed version tag such as `v1.0.0` on a commit from `main`, or run the
+   **Publish container image** GitHub Actions workflow manually on `main`. It runs
+   tests and publishes `latest`, a commit-specific tag, and (for releases) the
+   version tag without the `v` prefix to GHCR. The workflow
    uses the automatically supplied `GITHUB_TOKEN`; no personal token is embedded.
 3. In GitHub package settings, make the container package public. Verify an
    unauthenticated `docker pull ghcr.io/antoblu99/discord-music-bot:latest` from a
