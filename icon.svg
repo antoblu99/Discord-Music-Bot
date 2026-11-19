@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Discord Music Bot</title>
+  <desc id="desc">A white musical note on a rounded indigo background.</desc>
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="#4338ca"/>
+  <path d="M110 166V76l86-18v90" fill="none" stroke="#ffffff" stroke-width="18" stroke-linejoin="round"/>
+  <path d="M110 104l86-18" stroke="#ffffff" stroke-width="14"/>
+  <ellipse cx="88" cy="170" rx="31" ry="23" fill="#ffffff" transform="rotate(-18 88 170)"/>
+  <ellipse cx="174" cy="152" rx="31" ry="23" fill="#ffffff" transform="rotate(-18 174 152)"/>
+</svg>

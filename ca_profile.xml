@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommunityApplications>
+  <Profile>Discord Music Bot by antoblu: a self-hosted YouTube music bot for private Discord servers. This repository contains the application source and its Docker template. See the project documentation for setup and troubleshooting.</Profile>
+  <Icon>https://raw.githubusercontent.com/antoblu99/Discord-Music-Bot/main/icon.svg</Icon>
+  <WebPage>https://github.com/antoblu99/Discord-Music-Bot</WebPage>
+</CommunityApplications>

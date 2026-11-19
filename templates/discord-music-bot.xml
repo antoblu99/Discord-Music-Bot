@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container version="2">
+  <Name>discord-music-bot</Name>
+  <Repository>ghcr.io/antoblu99/discord-music-bot:latest</Repository>
+  <Registry>https://ghcr.io/antoblu99/discord-music-bot</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Icon>https://raw.githubusercontent.com/antoblu99/Discord-Music-Bot/main/icon.png</Icon>
+  <Overview>A self-hosted YouTube music bot for a private Discord server. Supports search, a bounded queue, pause, resume, skip, and automatic inactivity disconnect. Configure a dedicated Discord application and server ID before starting. Stop any previous instance using the same bot token. Startup replaces this application's global commands and registers commands only in the configured server. No WebUI, inbound ports, or persistent storage are required. Queues are lost on restart.</Overview>
+  <Project>https://github.com/antoblu99/Discord-Music-Bot</Project>
+  <TemplateURL>https://raw.githubusercontent.com/antoblu99/Discord-Music-Bot/main/templates/discord-music-bot.xml</TemplateURL>
+  <ReadMe>https://raw.githubusercontent.com/antoblu99/Discord-Music-Bot/main/docs/unraid.md</ReadMe>
+  <Category>MediaApp:Music</Category>
+  <ExtraSearchTerms>discord youtube music bot yt-dlp cippalippa</ExtraSearchTerms>
+  <Requires>A Discord bot token, a Discord server ID, outbound HTTPS and Discord voice UDP access. Uses up to 1 GiB of RAM-backed temporary storage for downloads. No privileged intents are needed.</Requires>
+  <License>GPL-3.0</License>
+  <ExtraParams>--init --read-only --tmpfs /tmp:rw,noexec,nosuid,size=1g,mode=1777 --cap-drop=ALL --security-opt=no-new-privileges:true --log-opt max-size=10m --log-opt max-file=3</ExtraParams>
+  <Config Name="Discord bot token" Target="DISCORD_TOKEN" Default="" Description="Required. Obtain a new bot token from the Discord Developer Portal. Never share or commit your configured user template." Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Discord server ID" Target="DISCORD_GUILD_ID" Default="" Description="Required. Enable Developer Mode in Discord, then copy the target server ID. Commands are registered only in this server." Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Idle timeout" Target="IDLE_TIMEOUT" Default="180" Description="Positive integer: seconds waiting for the next queued track before disconnecting. Paused playback is not idle." Type="Variable" Display="advanced" Required="true" Mask="false">180</Config>
+  <Config Name="Queue limit" Target="QUEUE_LIMIT" Default="50" Description="Positive integer: maximum number of waiting tracks." Type="Variable" Display="advanced" Required="true" Mask="false">50</Config>
+  <Config Name="Maximum track duration" Target="MAX_DURATION" Default="3600" Description="Positive integer: maximum permitted track duration in seconds." Type="Variable" Display="advanced" Required="true" Mask="false">3600</Config>
+</Container>

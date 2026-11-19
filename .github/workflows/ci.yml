@@ -1,0 +1,17 @@
+name: CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.13.6"
+      - run: uv sync --frozen
+      - run: uv run --frozen ruff check .
+      - run: uv run --frozen pytest
+      - run: uv export --frozen --no-dev --no-emit-project --no-header --format requirements-txt | diff - requirements.lock
+      - run: docker build -t discord-music-bot:test .

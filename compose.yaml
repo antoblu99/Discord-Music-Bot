@@ -1,0 +1,18 @@
+services:
+  music-bot:
+    build: .
+    image: discord-music-bot:local
+    init: true
+    restart: unless-stopped
+    env_file: ${BOT_ENV_FILE:-.env}
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=1g,mode=1777
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
