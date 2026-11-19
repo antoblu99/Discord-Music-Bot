@@ -34,30 +34,32 @@ metadata in [`ca_profile.xml`](ca_profile.xml). It follows the official
 See the [Unraid installation and publishing guide](docs/unraid.md) for template
 testing, image publication, and the CA Validate/Scan submission steps.
 
-The GHCR image is a publication target, not an already published release. Until
-the maintainer publishes it and CA approves the submission, build locally and
-use the local-template test described in that guide, Docker CLI, or Compose.
-Compose Manager is optional; installing from Apps does not require it.
+The public image is available at `ghcr.io/antoblu99/discord-music-bot:latest`;
+use `:1.0.0` to select the first release explicitly. The app has not yet been
+approved for Community Applications. Until then, install the XML template manually
+as described in the guide, or use Docker CLI or Compose. Compose Manager is optional.
 
 ## Docker CLI (without Compose)
 
-You can build locally below, or download a ready-to-load image from the GitHub
-**Actions > CI** run's **discord-music-bot-linux-amd64** artifact. Unzip the download
-and run `docker load --input discord-music-bot-linux-amd64.tar.gz`, then skip the
-`docker build` step below. See the [Unraid guide](docs/unraid.md) for details.
+Install the public package directly from GitHub Container Registry:
 
 ```sh
 cp .env.example .env
 # Set DISCORD_TOKEN and DISCORD_GUILD_ID securely before starting.
-docker build -t discord-music-bot:local .
+docker pull ghcr.io/antoblu99/discord-music-bot:latest
 docker run -d --name discord-music-bot \
   --env-file .env --restart unless-stopped --init \
   --read-only --tmpfs /tmp:rw,noexec,nosuid,size=1g,mode=1777 \
   --cap-drop ALL --security-opt no-new-privileges:true \
   --log-opt max-size=10m --log-opt max-file=3 \
-  discord-music-bot:local
+  ghcr.io/antoblu99/discord-music-bot:latest
 docker logs -f --tail=100 discord-music-bot
 ```
+
+For a local build, run `docker build -t discord-music-bot:local .` and use
+`discord-music-bot:local` instead of the GHCR image in the run command. GitHub
+**Actions > CI** also provides a downloadable image artifact for offline loading;
+see the [Unraid guide](docs/unraid.md).
 
 Choose Docker CLI, Compose, or the Unraid template for a given bot; run only one
 instance with the same token. No ports or host directories need to be mounted.

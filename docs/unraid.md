@@ -8,11 +8,25 @@ The existing GPL-3.0 license is retained; the starter's MIT license is not copie
 
 ## Publication status
 
-The template is prepared for `ghcr.io/antoblu99/discord-music-bot:latest`.
-The image and these new raw GitHub files are not available until the maintainer
-pushes the changes and publishes the image. The app has not been submitted to or
-approved by Community Applications. Local XML checks do not replace CA Validate,
-Scan, or testing on a real Unraid host.
+The public package is published at `ghcr.io/antoblu99/discord-music-bot:latest`,
+with version `1.0.0` also available. Anonymous Docker pull has been verified.
+The template and icons are available from this repository's `main` branch.
+The app has not been submitted to or approved by Community Applications. Local
+XML checks do not replace CA Validate, Scan, or testing on a real Unraid host.
+
+## Manual install before CA approval
+
+Download `templates/discord-music-bot.xml` from this repository and copy it to
+`/boot/config/plugins/dockerMan/templates-user/my-discord-music-bot.xml` on Unraid,
+without overwriting an existing configured template. In Docker > Add Container,
+select that template. Keep Repository set to
+`ghcr.io/antoblu99/discord-music-bot:latest` (or use `:1.0.0` for the fixed release),
+enter your token and server ID, and Apply. Unraid pulls the public image directly;
+no local build, registry login, or artifact download is required.
+
+From the terminal, you can also run
+`docker pull ghcr.io/antoblu99/discord-music-bot:latest`. See the root README for
+the full Docker CLI run command. Stop any previous instance using the same token.
 
 ## Install from Apps (after approval)
 
