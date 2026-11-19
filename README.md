@@ -41,6 +41,11 @@ Compose Manager is optional; installing from Apps does not require it.
 
 ## Docker CLI (without Compose)
 
+You can build locally below, or download a ready-to-load image from the GitHub
+**Actions > CI** run's **discord-music-bot-linux-amd64** artifact. Unzip the download
+and run `docker load --input discord-music-bot-linux-amd64.tar.gz`, then skip the
+`docker build` step below. See the [Unraid guide](docs/unraid.md) for details.
+
 ```sh
 cp .env.example .env
 # Set DISCORD_TOKEN and DISCORD_GUILD_ID securely before starting.

@@ -70,7 +70,23 @@ without corresponding Unraid testing.
 
 ## Local template test before publication
 
+To install an image built by GitHub without configuring a registry, open the
+repository's **Actions > CI** page, select the successful run for your commit on
+`main`, and download the **discord-music-bot-linux-amd64** artifact. GitHub requires
+sign-in to download artifacts. Unzip the downloaded artifact, copy the contained
+`discord-music-bot-linux-amd64.tar.gz` to your Unraid host, and run:
+
+```sh
+docker load --input discord-music-bot-linux-amd64.tar.gz
+```
+
+This loads `discord-music-bot:local` and a commit-specific tag. Artifacts expire
+after seven days; rerun CI to create a new download. The artifact contains the
+image, not your token or configured `.env`. Use it with the local template below
+or the Docker CLI command in the root README (skip its build step).
+
 Build the image on Unraid with `docker build -t discord-music-bot:local .`.
+Skip this build if you loaded the GitHub artifact instead.
 Place a copy of `templates/discord-music-bot.xml` at
 `/boot/config/plugins/dockerMan/templates-user/my-discord-music-bot.xml`, change
 Repository in that local copy to `discord-music-bot:local`, and select it from
